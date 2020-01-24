@@ -1,0 +1,12 @@
+https://riptutorial.com/cplusplus/example/11914/nested-classes-structures
+
+
+// Good.
+struct Outer {
+    struct Inner {
+        void do_something();
+    };
+
+};
+
+void Outer::Inner::do_something() {}
