@@ -1,0 +1,4 @@
+auto  -- by default --- local
+register --- local var
+static--- local/global var
+extern --- global var/func
