@@ -1,0 +1,32 @@
+Whenever a function is called from another function the control jumps from the calling function to the called function and 
+then after executive again returns to the caller.
+
+If any function is called several times then it may cause delay in program execution,.
+
+An inline function is a function which is expanded or put in the same place from where it is called, this is done before 
+the execution of program starts and it increases speed of program execution by eliminating frequent jumps from caller to callie 
+and vice versa.
+
+
+
+
+
+
+
+                                https://www.tutorialspoint.com/cplusplus/cpp_inline_functions.htm
+#include <iostream>
+ 
+using namespace std;
+
+inline int Max(int x, int y) {
+   return (x > y)? x : y;
+}
+
+// Main function for the program
+int main() {
+   cout << "Max (20,10): " << Max(20,10) << endl;
+   cout << "Max (0,200): " << Max(0,200) << endl;
+   cout << "Max (100,1010): " << Max(100,1010) << endl;
+   
+   return 0;
+}
