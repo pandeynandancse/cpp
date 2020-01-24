@@ -1,0 +1,179 @@
+#include <iostream>
+ 
+using namespace std;
+ 
+class Box {
+   double width;
+   
+   public:
+      friend void printWidth( Box box );
+      void setWidth( double wid );
+};
+
+// Member function definition
+void Box::setWidth( double wid ) {
+   width = wid;
+}
+
+// Note: printWidth() is not a member function of any class.
+void printWidth( Box box ) {
+   /* Because printWidth() is a friend of Box, it can
+   directly access any member of this class */
+   cout << "Width of box : " << box.width <<endl;
+}
+ 
+// Main function for the program
+int main() {
+   Box box;
+ 
+   // set box width without member function
+   box.setWidth(10.0);
+   
+   // Use friend function to print the wdith.
+   printWidth( box );
+ 
+   return 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                              https://www.geeksforgeeks.org/friend-class-function-cpp/
+2. friend class::          
+
+
+
+
+#include <iostream> 
+class A { 
+private: 
+    int a; 
+  
+public: 
+    A() { a = 0; } 
+    friend class B; // Friend Class 
+}; 
+  
+class B { 
+private: 
+    int b; 
+  
+public: 
+    void showA(A& x) 
+    { 
+        // Since B is friend of A, it can access 
+        // private members of A 
+        std::cout << "A::a=" << x.a; 
+    } 
+}; 
+  
+int main() 
+{ 
+    A a; 
+    B b; 
+    b.showA(a); 
+    return 0; 
+} 
+
+
+
+
+
+
+
+
+
+
+
+
+3.
+#include <iostream> 
+
+class B; 
+
+class A { 
+public: 
+	void showB(B&); 
+}; 
+
+class B { 
+private: 
+	int b; 
+
+public: 
+	B() { b = 0; } 
+	friend void A::showB(B& x); // Friend function 
+}; 
+
+void A::showB(B& x) 
+{ 
+	// Since showB() is friend of B, it can 
+	// access private members of B 
+	std::cout << "B::b = " << x.b; 
+} 
+
+int main() 
+{ 
+	A a; 
+	B x; 
+	a.showB(x); 
+	return 0; 
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+4.
+#include <iostream> 
+
+class A { 
+	int a; 
+
+public: 
+	A() { a = 0; } 
+
+	// global friend function 
+	friend void showA(A&); 
+}; 
+
+void showA(A& x) 
+{ 
+	// Since showA() is a friend, it can access 
+	// private members of A 
+	std::cout << "A::a=" << x.a; 
+} 
+
+int main() 
+{ 
+	A a; 
+	showA(a); 
+	return 0; 
+}
+
