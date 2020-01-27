@@ -1,0 +1,12 @@
+https://www.decodejava.com/cpp-this-keyword.htm
+
+
+In C++, this keyword can be used to -
+1.Access the currently executing object of a class.
+2.Access the data members of the currently executing object.
+3.Calling the member functions associated with the currently executing object.
+4.To resolve the shadowing issue, when a local variable has a same name as an instance variable.
+
+
+
+
