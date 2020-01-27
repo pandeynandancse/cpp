@@ -1,0 +1,251 @@
+https://stackoverflow.com/questions/2750316/this-vs-this-in-c
+
+
+
+this is a pointer, and *this is a dereferenced pointer.
+
+If you had a function that returned this, it would be a pointer to the current object, while a function that returned 
+*this would be a "clone" of the current object, allocated on the stack -- unless you have specified the return type
+of the method to return a reference.
+
+A simple program that shows the difference between operating on copies and references:
+
+
+
+
+
+
+#include <iostream>
+
+class Foo
+{
+    public:
+        Foo()
+        {
+            this->value = 0;
+        }
+
+        Foo get_copy()
+        {
+            return *this;
+        }
+
+        Foo& get_copy_as_reference()
+        {
+            return *this;
+        }
+
+        Foo* get_pointer()
+        {
+            return this;
+        }
+
+        void increment()
+        {
+            this->value++;
+        }
+
+        void print_value()
+        {
+            std::cout << this->value << std::endl;
+        }
+
+    private:
+        int value;
+};
+
+int main()
+{
+    Foo foo;
+    foo.increment();
+    foo.print_value();
+
+    foo.get_copy().increment();
+    foo.print_value();
+
+    foo.get_copy_as_reference().increment();
+    foo.print_value();
+
+    foo.get_pointer()->increment();
+    foo.print_value();
+
+    return 0;
+}
+
+Output:
+
+1
+1
+2
+3
+
+
+
+
+
+
+
+
+
+
+There is no real difference, this->foo() is the same as (*this).foo()
+
+
+
+
+
+
+
+
+
+
+
+                          https://beginnersbook.com/2017/08/cpp-this-pointer/
+
+1.
+#include <iostream>
+using namespace std;
+class Demo {
+private:
+  int num;
+  char ch;
+public:
+  void setMyValues(int num, char ch){
+    this->num =num;
+    this->ch=ch;
+  }
+  void displayMyValues(){
+    cout<<num<<endl;
+    cout<<ch;
+  }
+};
+int main(){
+  Demo obj;
+  obj.setMyValues(100, 'A');
+  obj.displayMyValues();
+  return 0;
+}
+
+Output:
+
+100
+A
+
+
+
+
+
+
+
+
+
+
+2.
+#include <iostream>
+using namespace std;
+class Demo {
+private:
+  int num;
+  char ch;
+public:
+  Demo &setNum(int num){
+    this->num =num;
+    return *this;
+  }
+  Demo &setCh(char ch){
+    this->num++;
+    this->ch =ch;
+    return *this;
+  }
+  void displayMyValues(){
+    cout<<num<<endl;
+    cout<<ch;
+  }
+};
+int main(){
+  Demo obj;
+  //Chaining calls
+  obj.setNum(100).setCh('A');
+  obj.displayMyValues();
+  return 0;
+}
+
+Output:
+
+101
+A
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                        https://www.tutorialspoint.com/cplusplus/cpp_this_pointer.htm
+
+
+Every object in C++ has access to its own address through an important pointer called this pointer. 
+The this pointer is an implicit parameter to all member functions. Therefore, inside a member function, 
+this may be used to refer to the invoking object.
+
+Friend functions do not have a this pointer, because friends are not members of a class.
+Only member functions have a this pointer.
+
+
+
+
+Live Demo
+
+#include <iostream>
+ 
+using namespace std;
+
+class Box {
+   public:
+      // Constructor definition
+      Box(double l = 2.0, double b = 2.0, double h = 2.0) {
+         cout <<"Constructor called." << endl;
+         length = l;
+         breadth = b;
+         height = h;
+      }
+      double Volume() {
+         return length * breadth * height;
+      }
+      int compare(Box box) {
+         return this->Volume() > box.Volume();
+      }
+      
+   private:
+      double length;     // Length of a box
+      double breadth;    // Breadth of a box
+      double height;     // Height of a box
+};
+
+int main(void) {
+   Box Box1(3.3, 1.2, 1.5);    // Declare box1
+   Box Box2(8.5, 6.0, 2.0);    // Declare box2
+
+   if(Box1.compare(Box2)) {
+      cout << "Box2 is smaller than Box1" <<endl;
+   } else {
+      cout << "Box2 is equal to or larger than Box1" <<endl;
+   }
+   
+   return 0;
+}
+
+When the above code is compiled and executed, it produces the following result −
+
+Constructor called.
+Constructor called.
+Box2 is equal to or larger than Box1
