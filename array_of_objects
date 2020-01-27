@@ -1,1 +1,93 @@
+https://www.decodejava.com/cpp-array-of-objects.htm
 
+
+#include<iostream>
+
+using namespace std;
+
+class A
+{
+private:
+string name;
+int age;
+
+public:
+void getName()
+{
+	cout<<"Your name is : " << name << "\n";
+}
+
+
+void setName()
+{
+	cout<<"Enter your name : ";
+	cin>>name;
+}
+
+
+int setAge()
+{
+	cout<<"Enter your age : ";
+	cin>>age;
+}
+
+
+void getAge()
+{
+	cout<<"Your age is : " << age << "\n";
+}
+};
+
+
+
+
+int main()
+{
+int size = 4;
+A array[size]; //Array holding 4 object references of type, A.
+
+
+
+
+//Setting the name and age of properties of each object of A class, stored in an array
+for(int i=0; i<size; i++) //accessing array elements using length variable in for-loop
+{
+	array[i].setName();
+	array[i].setAge();
+}
+
+
+
+
+//Getting the name and age of properties of each object of A class, stored in an array
+for(int i=0; i<size; i++) //accessing array elements using length variable in for-loop
+{
+	array[i].getName();
+	array[i].getAge();
+}
+}
+
+
+
+Output-
+
+Enter the name : Raj
+Enter the age : 28
+Enter the name : Tom
+Enter the age : 25
+Enter the name : Tobiasz
+Enter the age : 31
+Enter the name : Julia
+Enter the age : 27
+Enter the name : Steven
+Enter the age : 32
+The name is : Raj
+The age is : 28
+The name is : Tom
+The age is : 25
+The name is : Tobiasz
+The age is : 31
+The name is : Julia
+The age is : 27
+The name is : Steven
+The age is : 32
