@@ -1,6 +1,11 @@
+Source : https://www.geeksforgeeks.org/copy-constructor-in-cpp/
+
 default constructor creates shallow copy
 copy constructor creates deep copy
 
+
+a copy constructor can be made private.
+When we make a copy constructor private in a class, objects of that class become non-copyable.
 
 
 
