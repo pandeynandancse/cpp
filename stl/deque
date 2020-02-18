@@ -1,0 +1,20 @@
+
+
+    insert() 
+    rbegin() 
+    rend()
+    cbegin() 
+   
+    assign() 
+    resize() 
+    push_front() 
+    push_back() 
+    pop_front() and deque::pop_back() 
+    front() and deque::back() 
+    clear() and deque::erase() 
+    empty() and deque::size() 
+    deque::operator= and deque::operator[] in C++ STL:
+    operator= operator is used to assign new contents to the container by replacing the existing contents. operator[] operator is used to reference the element present at position given inside the operator.
+    at() and swap() in C++ STL: at() function is used reference the element present at the position given as the parameter to the function. swap() function is used to swap the contents of one deque with another deque of same type and size.
+    begin() and end()
+    deque::emplace_front() and deque::emplace_back() in C++ STL: emplace_front() function is used to insert a new element into the deque container. The new element is added to the beginning of the deque. emplace_back() function is used to insert a new element into the deque container. The new element is added to the end of the deque.
