@@ -1,4 +1,7 @@
 
+Double ended queues are a special case of queues where insertion and deletion operations are possible at both the ends.
+
+
 
     insert() 
     rbegin() 
