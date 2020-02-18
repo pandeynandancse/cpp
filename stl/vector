@@ -1,0 +1,100 @@
+Iterators:
+begin() 
+end() 
+cbegin()
+cend()
+rbegin()
+rend()
+crbegin()
+crend()
+
+
+// C++ program to illustrate the 
+// iterators in vector 
+#include <iostream> 
+#include <vector> 
+
+using namespace std; 
+
+int main() 
+{ 
+	vector<int> g1; 
+
+	for (int i = 1; i <= 5; i++) 
+		g1.push_back(i); 
+
+	cout << "Output of begin and end: "; 
+	for (auto i = g1.begin(); i != g1.end(); ++i) 
+		cout << *i << " "; 
+
+	cout << "\nOutput of cbegin and cend: "; 
+	for (auto i = g1.cbegin(); i != g1.cend(); ++i) 
+		cout << *i << " "; 
+
+	cout << "\nOutput of rbegin and rend: "; 
+	for (auto ir = g1.rbegin(); ir != g1.rend(); ++ir) 
+		cout << *ir << " "; 
+
+	cout << "\nOutput of crbegin and crend : "; 
+	for (auto ir = g1.crbegin(); ir != g1.crend(); ++ir) 
+		cout << *ir << " "; 
+
+	return 0; 
+} 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Capacity:
+
+
+    size() 
+    max_size() 
+    capacity() 
+    resize(n) – Resizes the container so that it contains ‘n’ elements.
+    empty() 
+    shrink_to_fit() 
+    reserve() 
+    
+    
+    
+    
+ Eleement access:
+ 
+  front() – Returns a reference to the first element in the vector
+back() – Returns a reference to the last element in the vector
+data() – Returns a direct pointer to the memory array used internally by the vector to store its owned elements.
+
+
+
+
+
+
+Modifiers:
+
+assign(old,new) – It assigns new value to the vector elements by replacing old ones
+push_back() – It push the elements into a vector from the back
+pop_back() – It is used to pop or remove elements from a vector from the back.
+insert(position,element) – It inserts new elements before the element at the specified position
+erase() – It is used to remove elements from a container from the specified position or range.
+swap() – It is used to swap the contents of one vector with another vector of same type. Sizes may differ.
+clear() – It is used to remove all the elements of the vector container
+emplace() – It extends the container by inserting new element at position
+emplace_back() – It is used to insert a new element into the vector container, the new element is added to the end of the vector
