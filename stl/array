@@ -1,0 +1,8 @@
+ front() :- This returns the first element of array.
+ back() :- This returns the last element of a
+ size()  //// ar.size()
+ swap()   //// ar.swap(ar1)
+ empty()
+ fil()    ////ar.fill(0)
+ 
+ 
