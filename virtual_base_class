@@ -1,1 +1,36 @@
+Explanation :The class A has just one data member a which is public. 
+This class is virtually inherited in class B and class C. 
+Now class B and class C becomes virtual base class and no duplication of data member a is done.
 
+
+
+
+
+#include <iostream> 
+using namespace std; 
+
+class A { 
+public: 
+	int a; 
+	A() // constructor 
+	{ 
+		a = 10; 
+	} 
+}; 
+
+class B : public virtual A { 
+}; 
+
+class C : public virtual A { 
+}; 
+
+class D : public B, public C { 
+}; 
+
+int main() 
+{ 
+	D object; // object creation of class d 
+	cout << "a = " << object.a << endl; 
+
+	return 0; 
+} 
