@@ -1,0 +1,369 @@
+Two operators = and & are already overloaded by default in C++. 
+For example: To copy objects of same class, you can directly use = operator.
+You do not need to create an operator function.
+
+
+Operator overloading cannot change the precedence and associatively of operators. 
+
+
+There are 4 operators that cannot be overloaded in C++. They are :: (scope resolution),
+. (member selection), .* (member selection through pointer to function) and ?: (ternary operator).
+
+
+-------------------------------------------------------------------------------
+
+https://www.javatpoint.com/cpp-overloading
+
+Rules for Operator Overloading
+
+    Existing operators can only be overloaded, but the new operators cannot be overloaded.
+    The overloaded operator contains atleast one operand of the user-defined data type.
+    We cannot use friend function to overload certain operators. However, the member function can be used to overload those operators.
+    When unary operators are overloaded through a member function take no explicit arguments, but, if they are overloaded by a friend function, takes one argument.
+    When binary operators are overloaded through a member function takes one explicit argument, and if they are overloaded through a friend function takes two explicit arguments.
+
+
+
+
+
+Operator that cannot be overloaded are as follows:
+
+    Scope operator (::)
+    Sizeof
+    member selector(.)
+    member pointer selector(*)
+    ternary operator(?:)
+
+
+
+
+
+
+
+
+
+
+
+
+#include <iostream>
+using namespace std;
+
+class Test
+{
+   private:
+      int count;
+
+   public:
+       Test(): count(5){}
+
+       void operator ++() 
+       { 
+          count = count+1; 
+       }
+       void Display() { cout<<"Count: "<<count; }
+};
+
+int main()
+{
+    Test t;
+    // this calls "function void operator ++()" function
+    ++t;    
+    t.Display();
+    return 0;
+}
+
+Output
+
+Count: 6
+
+
+
+
+
+
+
+--------------------------------------------------------------
+https://www.programiz.com/cpp-programming/increment-decrement-operator-overloading
+
+
+Example 1: Prefix ++ Increment Operator Overloading with no return type
+
+#include <iostream>
+using namespace std;
+
+class Check
+{
+    private:
+       int i;
+    public:
+       Check(): i(0) {  }
+       void operator ++() 
+          { ++i; }
+       void Display() 
+          { cout << "i=" << i << endl; }
+};
+
+int main()
+{
+    Check obj;
+
+    // Displays the value of data member i for object obj
+    obj.Display();
+
+    // Invokes operator function void operator ++( )
+    ++obj; 
+  
+    // Displays the value of data member i for object obj
+    obj.Display();
+
+    return 0;
+}
+
+Output
+
+i=0
+i=1
+
+
+--------------------------------------------------------------------------------
+
+Example 2: Prefix Increment ++ operator overloading with return type
+
+#include <iostream>
+using namespace std;
+
+class Check
+{
+  private:
+    int i;
+  public:
+    Check(): i(0) {  }
+
+    // Return type is Check
+    Check operator ++()
+    {
+       Check temp;
+       ++i;
+       temp.i = i;
+
+       return temp;
+    }
+
+    void Display()
+    { cout << "i = " << i << endl; }
+};
+
+int main()
+{
+    Check obj, obj1;
+    obj.Display();
+    obj1.Display();
+
+    obj1 = ++obj;
+
+    obj.Display();
+    obj1.Display();
+
+    return 0;
+}
+
+Output
+
+i = 0
+i = 0
+i = 1
+i = 1
+---------------------------------------------------------------------------
+
+Example 3: Postfix Increment ++ Operator Overloading
+   int i;
+  public:
+    Check(): i(0) {  }
+    Check operator ++ ()
+    {
+        Check temp;
+        temp.i = ++i;
+        return temp;
+    }
+
+    // Notice int inside barcket which indicates postfix increment.
+    Check operator ++ (int)
+    {
+        Check temp;
+        temp.i = i++;
+        return temp;
+    }
+
+    void Display()
+    { cout << "i = "<< i <<endl; }
+};
+
+int main()
+{
+    Check obj, obj1;    
+    obj.Display(); 
+    obj1.Display();
+
+    // Operator function is called, only then value of obj is assigned to obj1
+    obj1 = ++obj;
+    obj.Display();
+    obj1.Display();
+
+    // Assigns value of obj to obj1, only then operator function is called.
+    obj1 = obj++;
+    obj.Display();
+    obj1.Display();
+
+    return 0;
+}
+
+Output
+
+i = 0
+i = 0
+i = 1
+i = 1
+i = 2
+i = 1
+
+Notice, the int inside bracket. This int gives information to the compiler that it is the postfix version of operator.
+
+Don't confuse this int doesn't indicate integer.
+
+
+
+-----------------------------------------------------------------------------------
+
+Binary operator ovrloading
+
+#include <iostream>
+using namespace std;
+
+class Complex
+{
+    private:
+      float real;
+      float imag;
+    public:
+       Complex(): real(0), imag(0){ }
+       void input()
+       {
+           cout << "Enter real and imaginary parts respectively: ";
+           cin >> real;
+           cin >> imag;
+       }
+
+       // Operator overloading
+       Complex operator - (Complex c2)
+       {
+           Complex temp;
+           temp.real = real - c2.real;
+           temp.imag = imag - c2.imag;
+
+           return temp;
+       }
+
+       void output()
+       {
+           if(imag < 0)
+               cout << "Output Complex number: "<< real << imag << "i";
+           else
+               cout << "Output Complex number: " << real << "+" << imag << "i";
+       }
+};
+
+int main()
+{
+    Complex c1, c2, result;
+
+    cout<<"Enter first complex number:\n";
+    c1.input();
+
+    cout<<"Enter second complex number:\n";
+    c2.input();
+
+    // In case of operator overloading of binary operators in C++ programming, 
+    // the object on right hand side of operator is always assumed as argument by compiler.
+    result = c1 - c2;
+    result.output();
+
+    return 0;
+}
+
+
+
+
+
+Note:::In case of operator overloading of binary operators in C++ programming, 
+the object on right hand side of operator is always assumed as argument by compiler.
+
+
+
+
+-----------------------------------------------------------------------------------------
+
+
+                                  operator overloading via friend function
+https://www.decodejava.com/cpp-operator-overloading-with-friend-function.htm
+
+
+
+
+#include<iostream>
+
+using namespace std;
+
+class A
+{
+private:
+int a;
+
+public:
+void set_a();
+void get_a();
+friend A operator -(A);	// Friend function which takes an object of A and return an object of A type.
+};
+
+
+//Definition of set_a() function
+void A :: set_a()
+{
+a = 10;
+}
+
+
+//Definition of get_a() function
+void A :: get_a()
+{
+cout<< a <<"\n";
+}
+
+
+//Definition of overloaded unary minus operator - friend function
+A operator -(A ob)
+{
+ob.a = -(ob.a);
+return ob;
+}
+
+
+int main()
+{
+A ob;
+ob.set_a();
+
+cout<<"The value of a is : ";
+ob.get_a();
+
+//Calling operator overloaded function - to negate the value
+ob = -ob;	//ob object is passed as an argument to the friend function and its negative version is returned.
+
+cout<<"The value of a after calling operator overloading friend function - is : ";
+ob.get_a();
+}
+
+
+
+
+The value of a is : 10
+The value of a after calling operator overloading friend function - is : -10
